@@ -1,0 +1,14 @@
+10:42:42  INFO      [vela.collectstatic]  manifest.json gerado com 3 entradas.
+10:42:42  INFO      [vela.CLI]  Iniciando aplicação Vela...
+10:42:43  INFO      [vela.VelaApp]  Settings carregadas: config.settings
+10:42:43  INFO      [vela.VelaApp]  Vela iniciado | title=DFD Studio | sidebar=False | topbar=False | api=True
+10:42:43  INFO      [vela.Router]  Rota registrada: / → workspace_view [name=dfd_workspace, layout=blank]
+10:42:43  INFO      [vela.VelaApp]  App 'apps.dfd' registrado.
+10:42:43  INFO      [vela.VelaApp]  URLs do app 'apps.dfd' carregadas.
+10:42:43  INFO      [vela.VelaApp]  API do app 'apps.dfd' carregada.
+10:42:43  INFO      [vela.VelaApp]  Iniciando API local em http://127.0.0.1:8769
+10:42:43  INFO      [vela.VelaApp]  Servidor HTTP pronto.
+10:42:43  INFO      [vela.VelaApp]  Iniciando janela: DFD Studio (1550x950)
+10:42:43  INFO      [vela.Window]  Carregando shell [http]: http://127.0.0.1:8769/__vela__/shell?entry=/
+10:42:44  INFO      [vela.Router]  Navegando para: / [layout=blank]
+10:42:44  INFO      [vela.Bridge]  navigate() → / [layout=blank]

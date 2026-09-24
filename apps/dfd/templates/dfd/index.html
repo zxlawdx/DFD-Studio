@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DFD Studio — Editor visual</title>
+  <link rel="stylesheet" href="{{ static('dfd/css/app.css') }}">
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand"><div class="brand-icon"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="2" y="4" width="10" height="8" rx="2"/><rect x="20" y="4" width="10" height="8" rx="2"/><rect x="11" y="21" width="10" height="8" rx="2"/><path d="M7 12v5h9v4M25 12v5h-9"/></svg></div><span>DFD <strong>STUDIO</strong></span><span class="badge">BETA</span></div>
+      <div class="project-head"><div class="online"></div><span id="heading">Módulo 01 · Recebimento de parcelas</span><span class="badge muted">DFD-LVL-1</span></div>
+      <div class="top-actions"><button data-action="new" class="ghost small">Novo</button><button data-action="open" class="ghost small">Abrir JSON</button><button data-action="save" class="ghost small">Salvar</button><button data-action="exports" class="primary small">Exportar ↗</button></div>
+    </header>
+    <section class="body">
+      <aside class="left">
+        <div class="sidebar-tabs"><button class="active" data-tab="nodes">◈ Formas</button><button data-tab="layers">☷ Camadas</button><button data-tab="projects">▣ Projetos</button></div>
+        <section class="side-scroll" id="tab-nodes">
+          <p class="overline">BIBLIOTECA DE ELEMENTOS</p>
+          <p class="side-sub">Arraste uma forma ou clique para adicionar ao centro.</p>
+          <div class="shapes">
+            <button class="shape" draggable="true" data-kind="process"><span class="shape-icon process-icon">▢</span><strong>Processo</strong><small>Process (P)</small></button>
+            <button class="shape" draggable="true" data-kind="entity"><span class="shape-icon entity-icon">□</span><strong>Entidade</strong><small>Entity (E)</small></button>
+            <button class="shape" draggable="true" data-kind="store"><span class="shape-icon store-icon">▤</span><strong>Depósito</strong><small>Store (D)</small></button>
+            <button class="shape" draggable="true" data-kind="note"><span class="shape-icon note-icon">☰</span><strong>Anotação</strong><small>Note (N)</small></button>
+          </div>
+          <div class="divider"></div><p class="overline">FERRAMENTAS</p>
+          <div class="tools"><button class="tool active" data-mode="select">◈ &nbsp; Selecionar / mover <kbd>V</kbd></button><button class="tool" data-mode="connect">⇢ &nbsp; Conectar processos <kbd>C</kbd></button><button class="tool" data-mode="pan">✥ &nbsp; Mover tela <kbd>H</kbd></button></div>
+          <div class="divider"></div><p class="overline">ATIVIDADE 06</p><div class="assignment"><div class="assignment-title">Alterações do módulo 01</div><p>Revisão do diagrama entregue anteriormente:</p><div>✓ 1.8 → 1.11</div><div>✓ 1.13 → 1.04</div><div>✓ Desconto por antecipação</div><button class="secondary full" id="btnReview">Destacar alterações</button></div>
+        </section>
+        <section class="side-scroll hidden" id="tab-layers"><p class="overline">ELEMENTOS DO DIAGRAMA</p><div id="layerList" class="layer-list"></div></section>
+        <section class="side-scroll hidden" id="tab-projects"><p class="overline">PROJETOS SALVOS</p><button class="secondary full" id="refreshProjects">Atualizar lista</button><div id="projectList" class="layer-list"></div></section>
+        <div class="side-foot"><span class="online"></span><span>Editor local · sem conta</span></div>
+      </aside>
+      <main class="workspace">
+        <div class="canvasbar"><div class="crumb">WORKSPACE <b>/</b> MÓDULO 01 <b>/</b> DETALHAMENTO</div><div class="canvasbar-actions"><button id="btnUndo" title="Desfazer (Ctrl+Z)">↶</button><button id="btnRedo" title="Refazer (Ctrl+Y)">↷</button><i></i><button id="zoomOut" title="Diminuir zoom">−</button><span id="zoomValue">100%</span><button id="zoomIn" title="Aumentar zoom">+</button><button id="fit" title="Ajustar ao conteúdo">Enquadrar</button></div></div>
+        <div id="stage" class="stage" tabindex="0" aria-label="Área de edição do diagrama; arraste os elementos ou clique para selecionar.">
+          <svg id="sheet" xmlns="http://www.w3.org/2000/svg" aria-label="Diagrama de fluxo de dados"><defs><pattern id="dotgrid" width="22" height="22" patternUnits="userSpaceOnUse"><circle cx="1.1" cy="1.1" r=".7" fill="#596477" opacity=".45"/></pattern><marker id="arrowhead" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L11 6 L1 11z" fill="context-stroke"/></marker></defs><rect id="bg" width="100%" height="100%" fill="url(#dotgrid)"/><g id="world"><g id="edges"></g><g id="nodes"></g><g id="handles"></g></g></svg>
+          <div class="floating-hint" id="hint">Selecione um elemento para editar suas propriedades.</div>
+          <div class="minimap"><div class="minimap-title">MINIMAPA <button id="toggleMini" title="Ocultar minimapa">−</button></div><svg id="mini" viewBox="0 0 220 124"></svg></div>
+          <div class="stage-status"><span>● LOCAL</span><span id="count">0 elementos · 0 fluxos</span><span id="dirty">Alterações não salvas</span></div>
+        </div>
+      </main>
+      <aside class="right"><div class="prop-header"><div><p class="overline">INSPECTOR</p><h3 id="propTitle">Propriedades</h3></div><span class="badge muted">EDIT</span></div><div id="properties" class="properties"></div><div class="right-foot"><p class="overline">EXPORTAÇÃO ACADÊMICA</p><p>HTML independente, SVG vetorial e arquivo JSON editável.</p><button data-action="exports" class="secondary full">Exportar projeto ↗</button></div></aside>
+    </section>
+  </div>
+  <dialog id="dialog"><form method="dialog"><div class="modalhead"><h2 id="modalTitle">Exportar</h2><button value="cancel" class="close">×</button></div><div id="modalBody"></div></form></dialog>
+  <input type="file" id="filePicker" accept=".json,.dfd.json,application/json" hidden>
+  <div id="toast" role="status" aria-live="polite"></div>
+  <script src="{{ static('dfd/js/sample.js') }}"></script>
+  <script src="{{ static('dfd/js/app.js') }}"></script>
+</body></html>

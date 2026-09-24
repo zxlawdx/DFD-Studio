@@ -1,0 +1,441 @@
+<!doctype html><html lang="pt-BR"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Módulo 01 — Recebimento de parcelas</title><style>
+*{box-sizing:border-box}body{margin:0;background:#edf2f8;color:#17243b;font:15px Arial,sans-serif}header{padding:26px 32px;background:#14243d;color:white}h1{font-size:24px;margin:0 0 8px}header p{margin:0;opacity:.8}nav{padding:14px 32px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}button{padding:10px 16px;border:0;border-radius:7px;background:#2563eb;color:white;cursor:pointer}button.secondary{background:white;color:#14243d}main{padding:0 24px 24px}.sheet{background:white;border:1px solid #d9e2ef;border-radius:12px;padding:18px;overflow:auto}svg{display:block;width:100%;height:auto;min-width:700px}article{background:white;margin-top:22px;padding:24px;border-radius:12px}table{border-collapse:collapse;width:100%;font-size:14px}th,td{border:1px solid #dce3ec;padding:12px;text-align:left;vertical-align:top;white-space:pre-wrap}th{background:#f3f6fb}.note{white-space:pre-wrap;line-height:1.6}.legend{color:#078453;font-size:13px}footer{padding:18px 32px;font-size:12px;color:#53647a}@page{size:A3 landscape;margin:12mm}@media print{body{background:white}header{background:white;color:black;padding:0 0 8mm}nav,footer{display:none}main{padding:0}.sheet{border:0;padding:0;overflow:visible}svg{width:100%!important;min-width:0;max-height:240mm}article{break-before:page;padding:0}tr{break-inside:avoid}}
+</style><header><h1>Módulo 01 — Recebimento de parcelas</h1><p></p></header>
+<nav><button onclick="window.print()">Imprimir / salvar em PDF</button><button class="secondary" onclick="zoom(0.2)">Ampliar +</button><button class="secondary" onclick="zoom(-0.2)">Reduzir −</button><button class="secondary" onclick="scale=1;draw()">Ajustar</button><span>Arquivo independente • funciona sem internet</span></nav>
+<main><section class="sheet"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-77.9 -15 2080.95 1522" width="2080.95" height="1522" role="img" aria-label="Módulo 01 — Recebimento de parcelas">
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+<rect x="-77.9" y="-15" width="2080.95" height="1522" fill="white"/>
+<polyline points="250,212.5 315.0,212.5 315.0,210.0 380,210.0" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round"/>
+<polygon points="380,210.0 368.0,205.0 368.0,215.0" fill="#2563eb"/>
+<rect x="231.95" y="187.75" width="166.1" height="23" rx="3" fill="white" stroke="none" stroke-width="0"/>
+<text text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#334155">
+<tspan x="315.0" y="203.33">Detalhes da solicitação</tspan>
+</text>
+<polyline points="570,210.0 760,210.0" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round"/>
+<polygon points="760,210.0 748.0,205.0 748.0,215.0" fill="#2563eb"/>
+<rect x="595.35" y="186.5" width="139.3" height="23" rx="3" fill="white" stroke="none" stroke-width="0"/>
+<text text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#334155">
+<tspan x="665.0" y="202.08">Cadastro do cliente</tspan>
+</text>
+<polyline points="855.0,82 855.0,160" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round"/>
+<polygon points="855.0,160 860.0,148.0 850.0,148.0" fill="#2563eb"/>
+<rect x="862.0" y="97.5" width="146.0" height="23" rx="3" fill="white" stroke="none" stroke-width="0"/>
+<text text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#334155">
+<tspan x="935.0" y="113.08">Detalhes de cadastro</tspan>
+</text>
+<polyline points="950,210.0 1140,210.0" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round"/>
+<polygon points="1140,210.0 1128.0,205.0 1128.0,215.0" fill="#2563eb"/>
+<rect x="985.4" y="186.5" width="119.2" height="23" rx="3" fill="white" stroke="none" stroke-width="0"/>
+<text text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#334155">
+<tspan x="1045.0" y="202.08">Dados do cliente</tspan>
+</text>
+<polyline points="1235.0,82 1235.0,160" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round"/>
+<polygon points="1235.0,160 1240.0,148.0 1230.0,148.0" fill="#2563eb"/>
+<rect x="1247.0" y="97.5" width="146.0" height="23" rx="3" fill="white" stroke="none" stroke-width="0"/>
+<text text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#334155">
+<tspan x="1320.0" y="113.08">Detalhes de parcelas</tspan>
+</text>
+<polyline points="1330,210.0 1520,210.0" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round"/>
+<polygon points="1520,210.0 1508.0,205.0 1508.0,215.0" fill="#2563eb"/>
+<rect x="1352.0" y="186.5" width="146.0" height="23" rx="3" fill="white" stroke="none" stroke-width="0"/>
+<text text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#334155">
+<tspan x="1425.0" y="202.08">Parcela e vencimento</tspan>
+</text>
+<polyline points="855.0,260 855.0,365" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round"/>
+<polygon points="855.0,365 860.0,353.0 850.0,353.0" fill="#2563eb"/>
+<rect x="862.0" y="289.0" width="146.0" height="23" rx="3" fill="white" stroke="none" stroke-width="0"/>
+<text text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#334155">
+<tspan x="935.0" y="304.58">Cadastro inexistente</tspan>
+</text>
+<polyline points="1235.0,260 1235,415 950,415.0" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round"/>
+<polygon points="950,415.0 962.0,420.0 962.0,410.0" fill="#2563eb"/>
+<rect x="1022.85" y="391.5" width="139.3" height="23" rx="3" fill="white" stroke="none" stroke-width="0"/>
+<text text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#334155">
+<tspan x="1092.5" y="407.08">Parcela inexistente</tspan>
+</text>
+<polyline points="760,415.0 155,415 155.0,255" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round"/>
+<polygon points="155.0,255 150.0,267.0 160.0,267.0" fill="#2563eb"/>
+<rect x="377.8" y="391.5" width="159.4" height="23" rx="3" fill="white" stroke="none" stroke-width="0"/>
+<text text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#334155">
+<tspan x="457.5" y="407.08">Informação de rejeição</tspan>
+</text>
+<polyline points="1520,210.0 1430,210 1430,500 1235,500 1235.0,560" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round"/>
+<polygon points="1235.0,560 1240.0,548.0 1230.0,548.0" fill="#2563eb"/>
+<rect x="1287.05" y="331.5" width="125.9" height="23" rx="3" fill="white" stroke="none" stroke-width="0"/>
+<text text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#334155">
+<tspan x="1350.0" y="347.08">Parcela em atraso</tspan>
+</text>
+<polyline points="1140,610.0 990,610.0" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round"/>
+<polygon points="990,610.0 1002.0,615.0 1002.0,605.0" fill="#2563eb"/>
+<rect x="1012.1" y="586.5" width="105.8" height="23" rx="3" fill="white" stroke="none" stroke-width="0"/>
+<text text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#334155">
+<tspan x="1065.0" y="602.08">Dias de atraso</tspan>
+</text>
+<polyline points="800,610.0 650,610.0" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round"/>
+<polygon points="650,610.0 662.0,615.0 662.0,605.0" fill="#2563eb"/>
+<rect x="652.0" y="586.5" width="146.0" height="23" rx="3" fill="white" stroke="none" stroke-width="0"/>
+<text text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#334155">
+<tspan x="725.0" y="602.08">Detalhes de correção</tspan>
+</text>
+<polyline points="460,610.0 310,610.0" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round"/>
+<polygon points="310,610.0 322.0,615.0 322.0,605.0" fill="#2563eb"/>
+<rect x="325.4" y="586.5" width="119.2" height="23" rx="3" fill="white" stroke="none" stroke-width="0"/>
+<text text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#334155">
+<tspan x="385.0" y="602.08">Juros e correção</tspan>
+</text>
+<polyline points="215.0,660 215.0,800" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round"/>
+<polygon points="215.0,800 220.0,788.0 210.0,788.0" fill="#2563eb"/>
+<rect x="223.64999999999998" y="706.5" width="152.70000000000002" height="23" rx="3" fill="white" stroke="none" stroke-width="0"/>
+<text text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#334155">
+<tspan x="300.0" y="722.08">Novo valor da parcela</tspan>
+</text>
+<polyline points="785,821.0 555,821 555.0,660" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round"/>
+<polygon points="555.0,660 550.0,672.0 560.0,672.0" fill="#2563eb"/>
+<rect x="613.75" y="797.5" width="112.5" height="23" rx="3" fill="white" stroke="none" stroke-width="0"/>
+<text text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#334155">
+<tspan x="670.0" y="813.08">Regras de juros</tspan>
+</text>
+<polyline points="895.0,790 895.0,660" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round"/>
+<polygon points="895.0,660 890.0,672.0 900.0,672.0" fill="#2563eb"/>
+<rect x="910.7" y="701.5" width="132.60000000000002" height="23" rx="3" fill="white" stroke="none" stroke-width="0"/>
+<text text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#334155">
+<tspan x="977.0" y="717.08">Índice de correção</tspan>
+</text>
+<polyline points="1005,821.0 1235,821 1235.0,660" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round"/>
+<polygon points="1235.0,660 1230.0,672.0 1240.0,672.0" fill="#2563eb"/>
+<rect x="1080.5" y="797.5" width="79.0" height="23" rx="3" fill="white" stroke="none" stroke-width="0"/>
+<text text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#334155">
+<tspan x="1120.0" y="813.08">Calendário</tspan>
+</text>
+<polyline points="785,821.0 720,821 720,490 855,490 855.0,465" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round"/>
+<polygon points="855.0,465 850.0,477.0 860.0,477.0" fill="#2563eb"/>
+<rect x="645.35" y="714.0" width="139.3" height="23" rx="3" fill="white" stroke="none" stroke-width="0"/>
+<text text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#334155">
+<tspan x="715.0" y="729.58">Regras de validação</tspan>
+</text>
+<polyline points="1710,210.0 1790,210 1790,1140 895,1140 895.0,1100" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round"/>
+<polygon points="895.0,1100 890.0,1112.0 900.0,1112.0" fill="#2563eb"/>
+<rect x="1801.95" y="728.5" width="166.1" height="23" rx="3" fill="white" stroke="none" stroke-width="0"/>
+<text text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#334155">
+<tspan x="1885.0" y="744.08">Pagamento no vencimento</tspan>
+</text>
+<polyline points="1710,210.0 1750,210 1750,610 1710,610.0" fill="none" stroke="#078453" stroke-width="2" stroke-linejoin="round"/>
+<polygon points="1710,610.0 1722.0,615.0 1722.0,605.0" fill="#078453"/>
+<rect x="1765.4" y="378.0" width="119.2" height="40" rx="3" fill="white" stroke="none" stroke-width="0"/>
+<text text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#334155">
+<tspan x="1825.0" y="393.97999999999996">Datas e valor da</tspan>
+<tspan x="1825.0" y="410.17999999999995">parcela</tspan>
+</text>
+<polyline points="1615.0,660 1615.0,780" fill="none" stroke="#078453" stroke-width="2" stroke-linejoin="round"/>
+<polygon points="1615.0,780 1620.0,768.0 1610.0,768.0" fill="#078453"/>
+<rect x="1630.0" y="696.5" width="146.0" height="23" rx="3" fill="white" stroke="none" stroke-width="0"/>
+<text text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#334155">
+<tspan x="1703.0" y="712.08">Dados de antecipação</tspan>
+</text>
+<polyline points="1505,396.0 1480,396 1480,830 1520,830.0" fill="none" stroke="#078453" stroke-width="2" stroke-linejoin="round"/>
+<polygon points="1520,830.0 1508.0,825.0 1508.0,835.0" fill="#078453"/>
+<rect x="1343.05" y="589.5" width="125.9" height="23" rx="3" fill="white" stroke="none" stroke-width="0"/>
+<text text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#334155">
+<tspan x="1406.0" y="605.08">Regra de desconto</tspan>
+</text>
+<polyline points="1615.0,880 1615,925 55,925 55,610 120,610.0" fill="none" stroke="#078453" stroke-width="2" stroke-linejoin="round"/>
+<polygon points="120,610.0 108.0,605.0 108.0,615.0" fill="#078453"/>
+<rect x="778.75" y="890.0" width="112.5" height="40" rx="3" fill="white" stroke="none" stroke-width="0"/>
+<text text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#334155">
+<tspan x="835.0" y="905.98">Valor líquido e</tspan>
+<tspan x="835.0" y="922.1800000000001">desconto</tspan>
+</text>
+<polyline points="215.0,560 215,500 370,500 370,890 1090,890 1090,940 895,940 895.0,1000" fill="none" stroke="#078453" stroke-width="2" stroke-linejoin="round"/>
+<polygon points="895.0,1000 900.0,988.0 890.0,988.0" fill="#078453"/>
+<rect x="657.0" y="855.0" width="146.0" height="40" rx="3" fill="white" stroke="none" stroke-width="0"/>
+<text text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#334155">
+<tspan x="730.0" y="870.98">Parcela atualizada /</tspan>
+<tspan x="730.0" y="887.1800000000001">valor a pagar</tspan>
+</text>
+<polyline points="990,1050.0 1055.0,1050.0 1055.0,1049.0 1120,1049.0" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round"/>
+<polygon points="1120,1049.0 1108.0,1044.0 1108.0,1054.0" fill="#2563eb"/>
+<rect x="978.65" y="1026.0" width="152.70000000000002" height="23" rx="3" fill="white" stroke="none" stroke-width="0"/>
+<text text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#334155">
+<tspan x="1055.0" y="1041.58">Registro do pagamento</tspan>
+</text>
+<polyline points="800,1050.0 650,1050.0" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round"/>
+<polygon points="650,1050.0 662.0,1055.0 662.0,1045.0" fill="#2563eb"/>
+<rect x="652.0" y="1026.5" width="146.0" height="23" rx="3" fill="white" stroke="none" stroke-width="0"/>
+<text text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#334155">
+<tspan x="725.0" y="1042.08">Pagamento confirmado</tspan>
+</text>
+<polyline points="460,1050.0 310,1050.0" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round"/>
+<polygon points="310,1050.0 322.0,1055.0 322.0,1045.0" fill="#2563eb"/>
+<rect x="318.7" y="1026.5" width="132.60000000000002" height="23" rx="3" fill="white" stroke="none" stroke-width="0"/>
+<text text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#334155">
+<tspan x="385.0" y="1042.08">Pagamento no caixa</tspan>
+</text>
+<polyline points="650,1050.0 720,1050 720,1441 665,1441.0" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round"/>
+<polygon points="665,1441.0 677.0,1446.0 677.0,1436.0" fill="#2563eb"/>
+<rect x="725.0" y="1222.0" width="146.0" height="23" rx="3" fill="white" stroke="none" stroke-width="0"/>
+<text text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#334155">
+<tspan x="798.0" y="1237.58">Novos dados do caixa</tspan>
+</text>
+<polyline points="215.0,1000 215.0,862" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round"/>
+<polygon points="215.0,862 210.0,874.0 220.0,874.0" fill="#2563eb"/>
+<rect x="230.05" y="954.5" width="125.9" height="23" rx="3" fill="white" stroke="none" stroke-width="0"/>
+<text text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#334155">
+<tspan x="293.0" y="970.08">Status da parcela</tspan>
+</text>
+<polyline points="215.0,1100 215.0,1210" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round"/>
+<polygon points="215.0,1210 220.0,1198.0 210.0,1198.0" fill="#2563eb"/>
+<rect x="55.3" y="1131.5" width="159.4" height="23" rx="3" fill="white" stroke="none" stroke-width="0"/>
+<text text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#334155">
+<tspan x="135.0" y="1147.08">Status da parcela paga</tspan>
+</text>
+<polyline points="215.0,1310 215.0,1410" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round"/>
+<polygon points="215.0,1410 220.0,1398.0 210.0,1398.0" fill="#2563eb"/>
+<rect x="232.05" y="1336.5" width="125.9" height="23" rx="3" fill="white" stroke="none" stroke-width="0"/>
+<text text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#334155">
+<tspan x="295.0" y="1352.08">Status de compras</tspan>
+</text>
+<polyline points="310,1260.0 460,1260.0" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round"/>
+<polygon points="460,1260.0 448.0,1255.0 448.0,1265.0" fill="#2563eb"/>
+<rect x="305.3" y="1236.5" width="159.4" height="23" rx="3" fill="white" stroke="none" stroke-width="0"/>
+<text text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#334155">
+<tspan x="385.0" y="1252.08">Informações de compras</tspan>
+</text>
+<polyline points="310,1050.0 350,1050 350,1155 555,1155 555.0,1210" fill="none" stroke="#078453" stroke-width="2" stroke-linejoin="round"/>
+<polygon points="555.0,1210 560.0,1198.0 550.0,1198.0" fill="#078453"/>
+<rect x="469.6" y="1139.0" width="105.8" height="40" rx="3" fill="white" stroke="none" stroke-width="0"/>
+<text text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#334155">
+<tspan x="522.5" y="1154.98">Parcela paga /</tspan>
+<tspan x="522.5" y="1171.18">comprovante</tspan>
+</text>
+<polyline points="555.0,1310 555,1370 15,1370 15,212 60,212.5" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round"/>
+<polygon points="60,212.5 48.05629279867846,207.36698350975763 47.945188545642914,217.36636628295707" fill="#2563eb"/>
+<rect x="-42.9" y="771.0" width="105.8" height="40" rx="3" fill="white" stroke="none" stroke-width="0"/>
+<text text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#334155">
+<tspan x="10.0" y="786.98">Comprovante de</tspan>
+<tspan x="10.0" y="803.1800000000001">pagamento</tspan>
+</text>
+<rect x="60" y="170" width="190" height="85" rx="0" fill="white" stroke="#2563eb" stroke-width="2.3"/>
+<text text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#16243a">
+<tspan x="155.0" y="217.26">Cliente</tspan>
+</text>
+<rect x="380" y="160" width="190" height="100" rx="14" fill="white" stroke="#2563eb" stroke-width="2.3"/>
+<polyline points="380,187 570,187" fill="none" stroke="#2563eb" stroke-width="1.3" stroke-linejoin="round"/>
+<text text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#2563eb">
+<tspan x="475.0" y="178.08">1.1</tspan>
+</text>
+<text text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#16243a">
+<tspan x="475.0" y="218.81">Obter informação do</tspan>
+<tspan x="475.0" y="237.71">cliente</tspan>
+</text>
+<rect x="760" y="160" width="190" height="100" rx="14" fill="white" stroke="#2563eb" stroke-width="2.3"/>
+<polyline points="760,187 950,187" fill="none" stroke="#2563eb" stroke-width="1.3" stroke-linejoin="round"/>
+<text text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#2563eb">
+<tspan x="855.0" y="178.08">1.2</tspan>
+</text>
+<text text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#16243a">
+<tspan x="855.0" y="218.81">Verificar existência</tspan>
+<tspan x="855.0" y="237.71">do cliente</tspan>
+</text>
+<rect x="1140" y="160" width="190" height="100" rx="14" fill="white" stroke="#2563eb" stroke-width="2.3"/>
+<polyline points="1140,187 1330,187" fill="none" stroke="#2563eb" stroke-width="1.3" stroke-linejoin="round"/>
+<text text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#2563eb">
+<tspan x="1235.0" y="178.08">1.3</tspan>
+</text>
+<text text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#16243a">
+<tspan x="1235.0" y="218.81">Verificar existência</tspan>
+<tspan x="1235.0" y="237.71">de parcelas</tspan>
+</text>
+<rect x="1520" y="160" width="190" height="100" rx="14" fill="white" stroke="#2563eb" stroke-width="2.3"/>
+<polyline points="1520,187 1710,187" fill="none" stroke="#2563eb" stroke-width="1.3" stroke-linejoin="round"/>
+<text text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#2563eb">
+<tspan x="1615.0" y="178.08">1.7</tspan>
+</text>
+<text text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#16243a">
+<tspan x="1615.0" y="218.81">Verificar data de</tspan>
+<tspan x="1615.0" y="237.71">vencimento</tspan>
+</text>
+<rect x="760" y="365" width="190" height="100" rx="14" fill="white" stroke="#2563eb" stroke-width="2.3"/>
+<polyline points="760,392 950,392" fill="none" stroke="#2563eb" stroke-width="1.3" stroke-linejoin="round"/>
+<text text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#2563eb">
+<tspan x="855.0" y="383.08">1.5</tspan>
+</text>
+<text text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#16243a">
+<tspan x="855.0" y="433.26">Rejeitar solicitação</tspan>
+</text>
+<rect x="1140" y="560" width="190" height="100" rx="14" fill="white" stroke="#2563eb" stroke-width="2.3"/>
+<polyline points="1140,587 1330,587" fill="none" stroke="#2563eb" stroke-width="1.3" stroke-linejoin="round"/>
+<text text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#2563eb">
+<tspan x="1235.0" y="578.08">1.6</tspan>
+</text>
+<text text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#16243a">
+<tspan x="1235.0" y="618.81">Calcular dias de</tspan>
+<tspan x="1235.0" y="637.7099999999999">atraso</tspan>
+</text>
+<rect x="800" y="560" width="190" height="100" rx="14" fill="white" stroke="#2563eb" stroke-width="2.3"/>
+<polyline points="800,587 990,587" fill="none" stroke="#2563eb" stroke-width="1.3" stroke-linejoin="round"/>
+<text text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#2563eb">
+<tspan x="895.0" y="578.08">1.10</tspan>
+</text>
+<text text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#16243a">
+<tspan x="895.0" y="618.81">Calcular índice de</tspan>
+<tspan x="895.0" y="637.7099999999999">correção</tspan>
+</text>
+<rect x="460" y="560" width="190" height="100" rx="14" fill="white" stroke="#2563eb" stroke-width="2.3"/>
+<polyline points="460,587 650,587" fill="none" stroke="#2563eb" stroke-width="1.3" stroke-linejoin="round"/>
+<text text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#2563eb">
+<tspan x="555.0" y="578.08">1.9</tspan>
+</text>
+<text text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#16243a">
+<tspan x="555.0" y="628.26">Calcular juros</tspan>
+</text>
+<rect x="120" y="560" width="190" height="100" rx="14" fill="white" stroke="#2563eb" stroke-width="2.3"/>
+<polyline points="120,587 310,587" fill="none" stroke="#2563eb" stroke-width="1.3" stroke-linejoin="round"/>
+<text text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#2563eb">
+<tspan x="215.0" y="578.08">1.8</tspan>
+</text>
+<text text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#16243a">
+<tspan x="215.0" y="618.81">Registrar novo valor</tspan>
+<tspan x="215.0" y="637.7099999999999">da parcela</tspan>
+</text>
+<rect x="1520" y="560" width="190" height="100" rx="14" fill="white" stroke="#078453" stroke-width="2.3"/>
+<polyline points="1520,587 1710,587" fill="none" stroke="#078453" stroke-width="1.3" stroke-linejoin="round"/>
+<text text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#078453">
+<tspan x="1615.0" y="578.08">1.15</tspan>
+</text>
+<text text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#16243a">
+<tspan x="1615.0" y="618.81">Verificar antecipação</tspan>
+<tspan x="1615.0" y="637.7099999999999">da parcela</tspan>
+</text>
+<rect x="1520" y="780" width="190" height="100" rx="14" fill="white" stroke="#078453" stroke-width="2.3"/>
+<polyline points="1520,807 1710,807" fill="none" stroke="#078453" stroke-width="1.3" stroke-linejoin="round"/>
+<text text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#078453">
+<tspan x="1615.0" y="798.08">1.16</tspan>
+</text>
+<text text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#16243a">
+<tspan x="1615.0" y="838.81">Calcular desconto por</tspan>
+<tspan x="1615.0" y="857.7099999999999">antecipação</tspan>
+</text>
+<rect x="800" y="1000" width="190" height="100" rx="14" fill="white" stroke="#2563eb" stroke-width="2.3"/>
+<polyline points="800,1027 990,1027" fill="none" stroke="#2563eb" stroke-width="1.3" stroke-linejoin="round"/>
+<text text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#2563eb">
+<tspan x="895.0" y="1018.08">1.11</tspan>
+</text>
+<text text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#16243a">
+<tspan x="895.0" y="1068.26">Registrar pagamento</tspan>
+</text>
+<rect x="460" y="1000" width="190" height="100" rx="14" fill="white" stroke="#2563eb" stroke-width="2.3"/>
+<polyline points="460,1027 650,1027" fill="none" stroke="#2563eb" stroke-width="1.3" stroke-linejoin="round"/>
+<text text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#2563eb">
+<tspan x="555.0" y="1018.08">1.14</tspan>
+</text>
+<text text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#16243a">
+<tspan x="555.0" y="1058.81">Registrar pagamento no</tspan>
+<tspan x="555.0" y="1077.71">caixa</tspan>
+</text>
+<rect x="120" y="1000" width="190" height="100" rx="14" fill="white" stroke="#2563eb" stroke-width="2.3"/>
+<polyline points="120,1027 310,1027" fill="none" stroke="#2563eb" stroke-width="1.3" stroke-linejoin="round"/>
+<text text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#2563eb">
+<tspan x="215.0" y="1018.08">1.13</tspan>
+</text>
+<text text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#16243a">
+<tspan x="215.0" y="1058.81">Gerar status de</tspan>
+<tspan x="215.0" y="1077.71">parcela paga</tspan>
+</text>
+<rect x="120" y="1210" width="190" height="100" rx="14" fill="white" stroke="#2563eb" stroke-width="2.3"/>
+<polyline points="120,1237 310,1237" fill="none" stroke="#2563eb" stroke-width="1.3" stroke-linejoin="round"/>
+<text text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#2563eb">
+<tspan x="215.0" y="1228.08">1.12</tspan>
+</text>
+<text text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#16243a">
+<tspan x="215.0" y="1268.81">Gerar status de</tspan>
+<tspan x="215.0" y="1287.71">compras</tspan>
+</text>
+<rect x="460" y="1210" width="190" height="100" rx="14" fill="white" stroke="#2563eb" stroke-width="2.3"/>
+<polyline points="460,1237 650,1237" fill="none" stroke="#2563eb" stroke-width="1.3" stroke-linejoin="round"/>
+<text text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#2563eb">
+<tspan x="555.0" y="1228.08">1.04</tspan>
+</text>
+<text text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#16243a">
+<tspan x="555.0" y="1268.81">Gerar comprovante de</tspan>
+<tspan x="555.0" y="1287.71">pagamento</tspan>
+</text>
+<rect x="745" y="20" width="220" height="62" rx="0" fill="white" stroke="none" stroke-width="0"/>
+<polyline points="965,20 745,20 745,82 965,82" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round"/>
+<polyline points="803,20 803,82" fill="none" stroke="#2563eb" stroke-width="1.5" stroke-linejoin="round"/>
+<text text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#2563eb">
+<tspan x="774" y="55.08">D-03</tspan>
+</text>
+<text text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#16243a">
+<tspan x="884.0" y="55.42">Cadastro de cliente</tspan>
+</text>
+<rect x="1125" y="20" width="220" height="62" rx="0" fill="white" stroke="none" stroke-width="0"/>
+<polyline points="1345,20 1125,20 1125,82 1345,82" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round"/>
+<polyline points="1183,20 1183,82" fill="none" stroke="#2563eb" stroke-width="1.5" stroke-linejoin="round"/>
+<text text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#2563eb">
+<tspan x="1154" y="55.08">D-06</tspan>
+</text>
+<text text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#16243a">
+<tspan x="1264.0" y="55.42">Histórico de parcelas</tspan>
+</text>
+<rect x="105" y="800" width="220" height="62" rx="0" fill="white" stroke="none" stroke-width="0"/>
+<polyline points="325,800 105,800 105,862 325,862" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round"/>
+<polyline points="163,800 163,862" fill="none" stroke="#2563eb" stroke-width="1.5" stroke-linejoin="round"/>
+<text text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#2563eb">
+<tspan x="134" y="835.08">D-06</tspan>
+</text>
+<text text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#16243a">
+<tspan x="244.0" y="835.42">Histórico de parcelas</tspan>
+</text>
+<rect x="785" y="790" width="220" height="62" rx="0" fill="white" stroke="none" stroke-width="0"/>
+<polyline points="1005,790 785,790 785,852 1005,852" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round"/>
+<polyline points="843,790 843,852" fill="none" stroke="#2563eb" stroke-width="1.5" stroke-linejoin="round"/>
+<text text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#2563eb">
+<tspan x="814" y="825.08">D-02</tspan>
+</text>
+<text text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#16243a">
+<tspan x="924.0" y="825.42">Tabelas do sistema</tspan>
+</text>
+<rect x="1505" y="365" width="220" height="62" rx="0" fill="white" stroke="none" stroke-width="0"/>
+<polyline points="1725,365 1505,365 1505,427 1725,427" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round"/>
+<polyline points="1563,365 1563,427" fill="none" stroke="#2563eb" stroke-width="1.5" stroke-linejoin="round"/>
+<text text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#2563eb">
+<tspan x="1534" y="400.08">D-02</tspan>
+</text>
+<text text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#16243a">
+<tspan x="1644.0" y="400.42">Tabelas do sistema</tspan>
+</text>
+<rect x="105" y="1410" width="220" height="62" rx="0" fill="white" stroke="none" stroke-width="0"/>
+<polyline points="325,1410 105,1410 105,1472 325,1472" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round"/>
+<polyline points="163,1410 163,1472" fill="none" stroke="#2563eb" stroke-width="1.5" stroke-linejoin="round"/>
+<text text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#2563eb">
+<tspan x="134" y="1445.08">D-04</tspan>
+</text>
+<text text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#16243a">
+<tspan x="244.0" y="1445.42">Cadastro de compras</tspan>
+</text>
+<rect x="445" y="1410" width="220" height="62" rx="0" fill="white" stroke="none" stroke-width="0"/>
+<polyline points="665,1410 445,1410 445,1472 665,1472" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round"/>
+<polyline points="503,1410 503,1472" fill="none" stroke="#2563eb" stroke-width="1.5" stroke-linejoin="round"/>
+<text text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#2563eb">
+<tspan x="474" y="1445.08">D-01</tspan>
+</text>
+<text text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#16243a">
+<tspan x="584.0" y="1445.42">Caixa</tspan>
+</text>
+<rect x="1120" y="1018" width="220" height="62" rx="0" fill="white" stroke="none" stroke-width="0"/>
+<polyline points="1340,1018 1120,1018 1120,1080 1340,1080" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round"/>
+<polyline points="1178,1018 1178,1080" fill="none" stroke="#2563eb" stroke-width="1.5" stroke-linejoin="round"/>
+<text text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#2563eb">
+<tspan x="1149" y="1053.08">D-05</tspan>
+</text>
+<text text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#16243a">
+<tspan x="1259.0" y="1044.645">Histórico de</tspan>
+<tspan x="1259.0" y="1062.195">pagamentos</tspan>
+</text>
+</svg></section><p class="legend">Verde: processos e conexões acrescentados na revisão.</p>
+<article><h2>Detalhamento e observações</h2><p class="note">Revisão da atividade 06: acrescentadas as conexões 1.8 → 1.11 e 1.13 → 1.04. Processos 1.15 e 1.16 acrescentados para verificar antecipação e calcular desconto. Layout reorganizado a partir do material fornecido. O processo 1.04 aparece uma única vez.
+
+Proposta de regra: antecipação ocorre quando a data do pagamento é anterior ao vencimento. O percentual e a base de cálculo devem ser definidos nas Tabelas do sistema; o enunciado não informa valores. O fluxo de desconto chega ao registro do novo valor (1.8), antes do pagamento (1.11). Para pagamento na data, registrar o valor original; para atraso, aplicar o fluxo de juros e correção. DFD representa dados, não a ordem de execução nem decisões de um fluxograma. Validar as regras propostas com o professor.</p><table><thead><tr><th>Elemento</th><th>Detalhamento</th></tr></thead><tbody><tr><td>1.7 — Verificar data de vencimento</td><td>Entradas: parcela e data prevista/efetiva de pagamento. Separar dados de parcelas em atraso, no vencimento e antecipadas. A comparação não substitui a confirmação do pagamento.</td></tr><tr><td>1.8 — Registrar novo valor da parcela</td><td>Receber valor corrigido por atraso OU valor líquido após desconto por antecipação. Atualizar o histórico da parcela e encaminhar identificação, valor original, desconto/acréscimos e valor final ao processo 1.11.</td></tr><tr><td>1.15 — Verificar antecipação da parcela</td><td>Comparar data de pagamento com data de vencimento. Se pagamento &lt; vencimento, produzir dados de antecipação para 1.16. No vencimento: desconto zero e valor original. Em atraso: encaminhar ao tratamento de atraso já existente em 1.7 / 1.6.</td></tr><tr><td>1.16 — Calcular desconto por antecipação</td><td>Consultar regra cadastrada em D-02. Desconto = função da regra, valor base e dias antecipados. Valor líquido = valor base − desconto. Garantir 0 ≤ desconto ≤ valor base. Percentual não definido no enunciado. Sem regra válida, não inventar desconto; solicitar validação.</td></tr><tr><td>1.11 — Registrar pagamento</td><td>Conexão solicitada 1.8 → 1.11: receber parcela atualizada e registrar o valor efetivamente pago, sem aplicar o desconto novamente. Persistir em D-05 e enviar os dados ao caixa.</td></tr><tr><td>1.13 — Gerar status de parcela paga</td><td>Após confirmação do pagamento, atualizar o status da parcela e enviá-lo ao processo 1.04 para emissão do comprovante. Atualizar também o histórico da parcela.</td></tr><tr><td>1.04 — Gerar comprovante de pagamento</td><td>Receber status da parcela paga de 1.13 e informações da compra. Comprovante proposto: cliente, parcela, vencimento, data do pagamento, valor original, desconto, acréscimos e valor efetivamente pago. Entregar ao cliente.</td></tr><tr><td>D-02 — Tabelas do sistema</td><td>Calendário, juros, índice de correção e política de desconto por antecipação. As ocorrências D-02 representam o mesmo depósito.</td></tr><tr><td>1.16 → 1.8</td><td>Proposta de integração: o valor descontado passa pelo registro da parcela antes do pagamento.</td></tr><tr><td>1.8 → 1.11</td><td>Conexão explicitamente solicitada no enunciado: 1.8 com 1.11.</td></tr><tr><td>1.13 → 1.04</td><td>Conexão explicitamente solicitada no enunciado: 1.13 com 1.04.</td></tr></tbody></table></article></main>
+<footer>Exportado pelo DFD Studio • Diagrama de fluxo de dados</footer>
+<script>let scale=1;function draw(){document.querySelector('svg').style.width=(scale*100)+'%'}function zoom(d){scale=Math.max(.4,Math.min(4,scale+d));draw()}</script></html>

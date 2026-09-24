@@ -1,0 +1,5 @@
+-r requirements.txt
+pyinstaller==6.16.0
+PyQt5>=5.15.9,<5.16
+PyQtWebEngine>=5.15.7,<5.16
+qtpy>=2.4,<3

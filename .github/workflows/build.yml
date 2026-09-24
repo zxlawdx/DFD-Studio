@@ -1,0 +1,87 @@
+name: Testes e executavel DFD Studio
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  testes:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Validar arquivos e regras de negocio
+        run: |
+          python -m compileall -q model.py exporter.py example.py apps config tests
+          python -m unittest discover -s tests -v
+      - name: Validar JavaScript
+        run: node --check apps/dfd/static/js/app.js
+
+  windows:
+    # Gera um .exe real no runner Windows, sem cross-compilacao.
+    needs: testes
+    runs-on: windows-latest
+    env:
+      PYTHONNOUSERSITE: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+          cache: pip
+          cache-dependency-path: requirements-build.txt
+      - name: Instalar Vela e toolchain Windows
+        run: |
+          python -m pip install --upgrade pip setuptools wheel
+          python -m pip install --no-user -r requirements-build.txt
+      - name: Verificar Qt e testes
+        run: |
+          python -c "from PyQt5.QtWidgets import QApplication; from PyQt5.QtWebEngineWidgets import QWebEngineView; print('Qt OK')"
+          python -m unittest discover -s tests -v
+      - name: Preparar estaticos offline
+        run: python manage.py collectstatic --no-tailwind
+      - name: Compilar com PyInstaller
+        shell: pwsh
+        run: |
+          python -m PyInstaller --noconfirm --clean --onedir --windowed `
+            --name DFD-Studio `
+            --add-data "apps;apps" `
+            --add-data "config;config" `
+            --add-data "assets;assets" `
+            --add-data "staticfiles;staticfiles" `
+            --collect-all vela `
+            --collect-all PyQt5 `
+            --collect-all PyQtWebEngine `
+            --collect-all webview `
+            --collect-submodules vela `
+            --hidden-import=webview.platforms.qt `
+            --hidden-import=qtpy `
+            --exclude-module=webview.platforms.winforms `
+            --exclude-module=clr `
+            --exclude-module=pythonnet `
+            launcher.py
+      - name: Copiar fontes e estaticos para a distribuicao
+        shell: pwsh
+        run: |
+          # O Vela atual pode carregar templates e arquivos de caminhos normais.
+          foreach ($name in @('apps', 'config', 'staticfiles', 'assets')) {
+            Copy-Item -Path $name -Destination "dist/DFD-Studio/$name" -Recurse -Force
+          }
+      - name: Empacotar pasta executavel
+        shell: pwsh
+        run: |
+          Compress-Archive -Path dist/DFD-Studio -DestinationPath DFD-Studio-Windows.zip -Force
+      - name: Anexar executavel nos artifacts do workflow
+        uses: actions/upload-artifact@v4
+        with:
+          name: DFD-Studio-Windows
+          path: DFD-Studio-Windows.zip
+          if-no-files-found: error
+          retention-days: 30
