@@ -152,7 +152,7 @@ jobs:
             libdbus-1-3 libasound2 libxkbcommon-x11-0 libxcb-cursor0 \
             libxcb-xinerama0 libxcb-icccm4 libxcb-keysyms1 libxcb-image0 \
             libxcb-render-util0 libxcomposite1 libxdamage1 libxrandr2 libx11-xcb1 \
-            libgl1-mesa-dri zip xvfb xauth
+            libgl1-mesa-dri libxcb-shape0 zip xvfb xauth
       - name: Instalar Vela, PyQt6 e PyInstaller
         run: |
           python -m pip install --upgrade pip setuptools wheel
@@ -169,7 +169,7 @@ jobs:
             --add-data "apps:apps" --add-data "config:config" \
             --add-data "assets:assets" --add-data "staticfiles:staticfiles" \
             --add-data "VERSION:." \
-            --collect-all vela --collect-all webview --collect-all PyQt6 \
+            --collect-all vela --collect-all webview \
             --collect-submodules apps \
             --hidden-import webview.platforms.qt \
             --hidden-import qtpy.QtWebEngineWidgets \
@@ -179,6 +179,16 @@ jobs:
             launcher_linux.py
       - name: Copiar arquivos usados pelo Vela para pasta do aplicativo
         run: cp -a apps config assets staticfiles VERSION dist/DFD-Studio/
+      - name: Verificar bibliotecas da plataforma XCB empacotada
+        run: |
+          plugin=$(find dist/DFD-Studio -type f -name libqxcb.so | head -n 1)
+          test -n "$plugin"
+          echo "Plugin XCB: $plugin"
+          ldd "$plugin" | tee /tmp/dfd-xcb-ldd.txt
+          if grep -q 'not found' /tmp/dfd-xcb-ldd.txt; then
+            echo 'Dependencias XCB ausentes no runner de build' >&2
+            exit 1
+          fi
       - name: Smoke test do executavel Linux (sem interface grafica)
         run: |
           QT_QPA_PLATFORM=offscreen ./dist/DFD-Studio/DFD-Studio --self-test
