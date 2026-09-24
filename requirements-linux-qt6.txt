@@ -1,0 +1,4 @@
+-r requirements.txt
+PyQt6>=6.8,<6.10
+PyQt6-WebEngine>=6.8,<6.10
+qtpy>=2.4,<3
