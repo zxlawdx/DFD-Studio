@@ -77,3 +77,11 @@ node --check apps/dfd/static/js/app.js
 As conexões criadas em modo visual são automáticas (linha direta ou ortogonal com portas selecionáveis); o modelo v1 já suporta `bends`, mas o editor visual ainda não oferece uma alça para desenhar manualmente curvas ortogonais complexas. O frontend preserva os pontos `bends` existentes. A geração do EXE e a execução da GUI não puderam ser verificadas localmente sem o Vela instalado; o motor JSON/SVG/HTML foi coberto por testes.
 
 O app é local. A API é ligada a `127.0.0.1`, e os dados ficam no computador do usuário.
+
+
+## Build Linux PyQt6 e releases versionadas
+
+A partir da v0.0.1, o build Linux usa **PyQt6/QtWebEngine**, enquanto
+Windows continua usando Qt5. O arquivo
+[README.md](README.md) descreve a execução local Qt6, o fluxo de tags
+e a publicação dos executáveis e checksums SHA-256 por GitHub Actions.

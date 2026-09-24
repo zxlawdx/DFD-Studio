@@ -8,3 +8,4 @@ staticfiles/
 *.spec
 .pytest_cache/
 .DS_Store
+.venv-qt6/
