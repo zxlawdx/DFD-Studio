@@ -2,6 +2,9 @@
 import os
 import sys
 from pathlib import Path
+from linux_graphics import configure_linux_graphics
+
+RENDER_MODE = configure_linux_graphics()
 
 # Definir ANTES da importacao de qtpy e pywebview.
 os.environ["QT_API"] = "pyqt6"
@@ -42,12 +45,13 @@ def self_test():
         if not (BASE_DIR / rel).is_file():
             raise RuntimeError(f"Arquivo obrigatorio ausente: {rel}")
     from config.wsgi import run  # noqa: F401  -- confirma imports dinamicos do Vela
-    print("DFD Studio Linux PyQt6 / QtWebEngine OK")
+    print(f"DFD Studio Linux PyQt6 / QtWebEngine OK; renderer={RENDER_MODE}")
 
 
 if __name__ == "__main__":
     if "--self-test" in sys.argv:
         self_test()
     else:
+        print(f"DFD Studio: renderer={RENDER_MODE} (DFD_HARDWARE_ACCELERATION=1 libera aceleracao)", flush=True)
         from config.wsgi import run
         run()
