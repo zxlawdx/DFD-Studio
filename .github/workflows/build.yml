@@ -1,13 +1,23 @@
-name: Testes e executavel DFD Studio
+name: DFD Studio - CI e releases
 
 on:
   push:
     branches: [main, master]
+    tags: ['v*']
   pull_request:
   workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Nova tag (v0.0.1), vazio = build sem release'
+        required: false
+        type: string
 
 permissions:
-  contents: read
+  contents: write
+
+env:
+  PACKAGE_LABEL: ${{ github.ref_type == 'tag' && github.ref_name || (github.event_name == 'workflow_dispatch' && inputs.tag || format('ci-{0}', github.run_number)) }}
+  RELEASE_TAG: ${{ github.ref_type == 'tag' && github.ref_name || (github.event_name == 'workflow_dispatch' && inputs.tag || '') }}
 
 jobs:
   testes:
@@ -16,11 +26,31 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
-          python-version: '3.13'
+          python-version: '3.12'
       - name: Validar arquivos e regras de negocio
         run: |
-          python -m compileall -q model.py exporter.py example.py apps config tests
+          python -m compileall -q model.py exporter.py example.py apps config tests launcher.py launcher_linux.py
           python -m unittest discover -s tests -v
+      - name: Validar versao e tag antes dos builds
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          tag="$RELEASE_TAG"
+          if [[ -n "$tag" ]]; then
+            if [[ ! "$tag" =~ ^v[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z.-]+)?$ ]]; then
+              echo 'Formato esperado: v0.0.1' >&2
+              exit 1
+            fi
+            test "$(cat VERSION)" = "${tag#v}"
+            # Dispatch apenas para tags ainda nao publicadas.
+            if [[ "$GITHUB_EVENT_NAME" == workflow_dispatch ]] &&
+               gh api "repos/$GITHUB_REPOSITORY/git/ref/tags/$tag" >/dev/null 2>&1; then
+              echo "Tag $tag ja existe: rode o workflow a partir da tag." >&2
+              exit 1
+            fi
+          fi
       - name: Validar JavaScript
         run: node --check apps/dfd/static/js/app.js
 
@@ -30,11 +60,12 @@ jobs:
     runs-on: windows-latest
     env:
       PYTHONNOUSERSITE: '1'
+      QT_API: pyqt5
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
-          python-version: '3.13'
+          python-version: '3.12'
           cache: pip
           cache-dependency-path: requirements-build.txt
       - name: Instalar Vela e toolchain Windows
@@ -56,13 +87,15 @@ jobs:
             --add-data "config;config" `
             --add-data "assets;assets" `
             --add-data "staticfiles;staticfiles" `
+            --add-data "VERSION;." `
             --collect-all vela `
             --collect-all PyQt5 `
-            --collect-all PyQtWebEngine `
             --collect-all webview `
             --collect-submodules vela `
             --hidden-import=webview.platforms.qt `
-            --hidden-import=qtpy `
+            --hidden-import=qtpy.QtWebEngineWidgets `
+            --hidden-import=qtpy.QtWebEngineCore `
+            --hidden-import=qtpy.QtWebChannel `
             --exclude-module=webview.platforms.winforms `
             --exclude-module=clr `
             --exclude-module=pythonnet `
@@ -71,17 +104,26 @@ jobs:
         shell: pwsh
         run: |
           # O Vela atual pode carregar templates e arquivos de caminhos normais.
-          foreach ($name in @('apps', 'config', 'staticfiles', 'assets')) {
+          foreach ($name in @('apps', 'config', 'staticfiles', 'assets', 'VERSION')) {
             Copy-Item -Path $name -Destination "dist/DFD-Studio/$name" -Recurse -Force
           }
+      - name: Smoke test Windows sem abrir GUI
+        shell: pwsh
+        run: |
+          .\dist\DFD-Studio\DFD-Studio.exe --self-test
+          if (-not (Test-Path 'dist/DFD-Studio/staticfiles/dfd/js/app.js')) { throw 'JS ausente' }
       - name: Empacotar pasta executavel
         shell: pwsh
         run: |
-          Compress-Archive -Path dist/DFD-Studio -DestinationPath DFD-Studio-Windows.zip -Force
+          New-Item -ItemType Directory -Path release -Force | Out-Null
+          $file = "DFD-Studio-Windows-x86_64-$env:PACKAGE_LABEL.zip"
+          Compress-Archive -Path dist/DFD-Studio -DestinationPath "release/$file" -Force
+          $hash = (Get-FileHash "release/$file" -Algorithm SHA256).Hash.ToLower()
+          "$hash  $file" | Set-Content "release/$file.sha256" -Encoding ascii
       - name: Anexar executavel nos artifacts do workflow
         uses: actions/upload-artifact@v4
         with:
-          name: DFD-Studio-Windows
-          path: DFD-Studio-Windows.zip
+          name: DFD-Studio-Windows-${{ env.PACKAGE_LABEL }}
+          path: release/*
           if-no-files-found: error
           retention-days: 30
