@@ -85,3 +85,18 @@ A partir da v0.0.1, o build Linux usa **PyQt6/QtWebEngine**, enquanto
 Windows continua usando Qt5. O arquivo
 [README.md](README.md) descreve a execução local Qt6, o fluxo de tags
 e a publicação dos executáveis e checksums SHA-256 por GitHub Actions.
+
+
+## Modo de compatibilidade para GLX/OpenGL (Linux)
+
+O DFD Studio Linux pode apresentar `Could not initialize GLX` ao usar
+Qt6 em sistemas com drivers de GPU/X11 incompatíveis. A partir da v0.0.2,
+o executável inicia com renderização por software. Para testar o hardware:
+
+```bash
+DFD_HARDWARE_ACCELERATION=1 ./DFD-Studio
+```
+
+O arquivo de distribuição Linux mudou de TAR.GZ para ZIP por conveniência;
+essa mudança **não altera o binário** dentro do pacote. Uma versão
+publicada v0.0.1 permanece inalterada na seção Releases.
