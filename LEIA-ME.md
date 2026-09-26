@@ -9,6 +9,7 @@ Editor desktop visual de **Diagrama de Fluxo de Dados**, com Python (Vela Framew
 - Criar processos, entidades externas, depósitos e notas por clique ou arrastando da biblioteca para o canvas.
 - Desenhar ligações: tecle **C**, clique na origem e depois no destino. Alternativamente, com um nó selecionado, clique na pequena alça circular da face desejada e escolha o destino.
 - Editar rótulos das setas, código, texto, cor, dimensões, portas e rota, além de detalhamento para impressão.
+- **Roteamento manual:** no modo **Selecionar (V)**, clique em uma seta para exibir as alças. Arraste os círculos **cianos** para reposicionar pontos e os **verdes** para inserir novos desvios; arraste o rótulo para separá-lo de outras conexões. Duplo clique em uma alça ciana para remover o ponto. Use **Restaurar rota automática** no inspetor para descartar desvios manuais. Mantenha **Alt** durante o arraste de pontos para desativar o encaixe em grade. Todas essas alterações podem ser desfeitas com Ctrl+Z e persistem no JSON v1.
 - Zoom da roda do mouse, pan segurando e arrastando o fundo, botão Enquadrar e minimapa.
 - Desfazer/refazer, excluir, importação/exportação de JSON e recuperação automática de rascunho no navegador embutido.
 - Salvar projetos localmente pelo backend, exportar SVG vetorial e HTML independente; ambos também ficam em `Documentos/DFD Studio/exportacoes`.
