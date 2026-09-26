@@ -70,10 +70,22 @@
     const end=path.at(-1),prev=path.at(-2),angle=Math.atan2(end[1]-prev[1],end[0]-prev[0]);
     const head=[end,[end[0]-11*Math.cos(angle)+5*Math.sin(angle),end[1]-11*Math.sin(angle)-5*Math.cos(angle)],[end[0]-11*Math.cos(angle)-5*Math.sin(angle),end[1]-11*Math.sin(angle)+5*Math.cos(angle)]];
     g.append(svg('polygon',{points:head.map(p=>p.join(',')).join(' '),fill:c}));
-    if(e.text){const m=middle(path),x=m[0]+(e.label_dx||0),y=m[1]+(e.label_dy||-12),rows=wrap(e.text,23),w=Math.max(...rows.map(r=>r.length),4)*7+20,h=rows.length*16+13;
-      g.append(svg('rect',{x:x-w/2,y:y-h/2,width:w,height:h,rx:4,fill:'#203344',stroke:isSelected?'#00e2eb':'#436074','stroke-width':1}));textLines(g,[x,y],e.text,11.5,'#d1ebf5',23);
+    if(e.text){const m=middle(path),x=m[0]+(e.label_dx||0),y=m[1]+(e.label_dy??-12),rows=wrap(e.text,23),w=Math.max(...rows.map(r=>r.length),4)*7+20,h=rows.length*16+13;
+      const label=svg('g',{'class':'edge-label','data-edge-label':e.id});
+      label.append(svg('rect',{x:x-w/2,y:y-h/2,width:w,height:h,rx:4,fill:'#203344',stroke:isSelected?'#00e2eb':'#436074','stroke-width':1}));
+      textLines(label,[x,y],e.text,11.5,'#d1ebf5',23);g.append(label);
     }
     $('#edges').append(g);
+    if(isSelected){
+      for(let i=1;i<path.length-1;i++)
+        $('#handles').append(svg('circle',{cx:path[i][0],cy:path[i][1],r:6,
+          'class':'edge-bend-handle','data-edge-bend':e.id,'data-bend-index':i-1}));
+      for(let i=0;i<path.length-1;i++){
+        const p=[(path[i][0]+path[i+1][0])/2,(path[i][1]+path[i+1][1])/2];
+        $('#handles').append(svg('circle',{cx:p[0],cy:p[1],r:5,'class':'edge-add-handle',
+          'data-edge-add':e.id,'data-segment-index':i}));
+      }
+    }
   }
   function drawNode(n){
     const active=selected?.type==='node'&&selected.id===n.id;
@@ -157,6 +169,17 @@
     if(a===b){note('Para conectar um processo a ele mesmo, use outro elemento auxiliar.',true);return}
     remember();const e={id:uid(),source:a,target:b,text:'Novo fluxo de dados',color:'#38bdf8',source_port:sourcePort,target_port:'auto',route:'horizontal',bends:[],label_dx:0,label_dy:-12,details:''};
     diagram.edges.push(e);selected={type:'edge',id:e.id};connectionFrom=null;mark();renderProperties();note('Fluxo criado. Edite o nome na lateral direita.');
+  }
+  // O schema JSON v1 já suporta pontos de desvio (bends).
+  function ensureBends(edge){
+    if(!Array.isArray(edge.bends)||!edge.bends.length)
+      edge.bends=edgePoints(edge).slice(1,-1).map(p=>[...p]);
+  }
+  function resetEdgeRoute(){
+    if(selected?.type!=='edge')return;
+    const edge=diagram.edges.find(e=>e.id===selected.id);
+    if(!edge)return;
+    remember();edge.bends=[];mark();note('Rota automática restaurada.');
   }
   function removeSelected(){if(!selected)return;remember();if(selected.type==='node'){diagram.edges=diagram.edges.filter(e=>e.source!==selected.id&&e.target!==selected.id);diagram.nodes=diagram.nodes.filter(n=>n.id!==selected.id)}else diagram.edges=diagram.edges.filter(e=>e.id!==selected.id);selected=null;mark();renderProperties()}
   function setMode(value){mode=value;connectionFrom=null;stage.dataset.mode=value;$$('[data-mode]').forEach(b=>b.classList.toggle('active',b.dataset.mode===value));$('#hint').textContent={select:'Arraste para mover; alças para redimensionar; roda do mouse para ampliar.',connect:'Clique na origem e depois no destino para criar uma seta.',pan:'Arraste o fundo para navegar pelo diagrama.'}[value]}
