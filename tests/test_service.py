@@ -27,11 +27,26 @@ class ServiceTests(unittest.TestCase):
             self.assertIn(pair, pairs)
         self.assertEqual(sum(n['code']=='1.04' for n in self.d['nodes']), 1)
 
+    def test_default_project_is_listed_and_loadable(self):
+        projects = self.service.list_projects()
+        self.assertEqual(projects[0]['name'], 'modulo_01')
+        self.assertTrue(projects[0]['bundled'])
+        self.assertEqual(self.service.load('modulo_01'), self.d)
+
     def test_save_load_original(self):
         p=self.service.save('módulo 01',self.d)
         self.assertTrue(Path(p['path']).is_file())
         self.assertEqual(self.service.load('módulo 01'),self.d)
-        self.assertEqual(len(self.service.list_projects()),1)
+        names = {item['name'] for item in self.service.list_projects()}
+        self.assertEqual(names, {'modulo_01', 'módulo_01'})
+
+    def test_saved_default_overrides_bundled_default(self):
+        changed = json.loads(json.dumps(self.d))
+        changed['title'] = 'Versão salva pelo usuário'
+        self.service.save('modulo_01', changed)
+        projects = self.service.list_projects()
+        self.assertEqual(sum(item['name'] == 'modulo_01' for item in projects), 1)
+        self.assertEqual(self.service.load('modulo_01')['title'], 'Versão salva pelo usuário')
 
     def test_export_svg_html_json(self):
         for kind in ('svg','html','json'):
