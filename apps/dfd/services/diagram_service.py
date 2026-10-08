@@ -7,6 +7,8 @@ import exporter
 from apps.dfd.repositories.project_repository import ProjectRepository
 
 class DiagramService:
+    DEFAULT_PROJECT = 'modulo_01'
+
     def __init__(self, repository=None):
         self.repo = repository or ProjectRepository()
 
@@ -17,10 +19,22 @@ class DiagramService:
         return model.read(p)
 
     def list_projects(self):
-        return self.repo.list()
+        projects = self.repo.list()
+        if not any(item.get('name') == self.DEFAULT_PROJECT for item in projects):
+            projects.insert(0, {
+                'name': self.DEFAULT_PROJECT,
+                'modified': 0,
+                'bundled': True,
+            })
+        return projects
 
     def load(self, name):
-        return self.repo.load(name)
+        try:
+            return self.repo.load(name)
+        except ValueError:
+            if self.repo.safe_name(name) == self.DEFAULT_PROJECT:
+                return self.example()
+            raise
 
     def save(self, name, diagram):
         return {'path': self.repo.save(name, diagram)}
