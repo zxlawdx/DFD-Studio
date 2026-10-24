@@ -206,7 +206,9 @@ jobs:
             echo "Aplicativo encerrou inesperadamente (codigo=$code)" >&2
             exit 1
           fi
-          grep -q 'Servidor HTTP pronto' startup.log
+          # Vela antigo registrava "Servidor HTTP pronto"; releases atuais expõem
+          # o mesmo marco pelo lifecycle. Aceitamos ambos sem mascarar crash.
+          grep -Eq 'Servidor HTTP pronto|Lifecycle.*running' startup.log
           if grep -q 'Could not initialize GLX' startup.log; then
             echo 'Falha de inicializacao GLX no teste com Xvfb' >&2
             exit 1
