@@ -57,6 +57,12 @@ Instale primeiro python3-venv e bibliotecas Qt do sistema
 (libxcb-cursor0, libxkbcommon-x11-0, libnss3, libgbm1, libegl1).
 No Windows, use INICIAR_WINDOWS.bat.
 
+## Arquitetura
+
+O DFD Studio usa a forma reduzida do padrão de projetos Vela: `api.py`/`bridge.py` na apresentação, `application/diagram_service.py` para os casos de uso, `domain/` para regras e contratos e `infrastructure/persistence/` para arquivos locais. `config/wsgi.py` apenas monta o runtime e `apps/dfd/app.py` funciona como composition root da aplicação.
+
+Veja [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md). Os caminhos antigos `model.py`, `services/` e `repositories/` permanecem temporariamente como shims de compatibilidade; novos módulos devem usar as camadas canônicas.
+
 ## Tags e releases
 
 O GitHub Actions testa o projeto e compila Windows/Linux em cada push
